@@ -69,6 +69,7 @@ class background_remover:
     CATEGORY = "rcsaquino"
 
     def main(self, image):
+        # Referenced from https://github.com/Jcd1230/rembg-comfyui-node/blob/fac7df6c3f42e158a2829b511b37f13e4cc834eb/__init__.py#L31
         processed_img = remove(
             Image.fromarray(
                 np.clip(255.0 * image.cpu().numpy().squeeze(), 0, 255).astype(np.uint8)
