@@ -58,16 +58,20 @@ class vae_loader:
 class background_remover:
     @classmethod
     def INPUT_TYPES(cls):
-        models = []
-        for session in rembg.session_factory.sessions_class:
-            model_name = session.name()
-            if not model_name == "u2net_custom":
-                models.append(model_name)
-
         return {
             "required": {
                 "image": ("IMAGE",),
-                "model": (models,),
+                "model": (
+                    [
+                        "u2net",
+                        "u2netp",
+                        "u2net_human_seg",
+                        "u2net_cloth_seg",
+                        "silueta",
+                        "isnet-general-use",
+                        "isnet-anime",
+                    ],
+                ),
             }
         }
 
