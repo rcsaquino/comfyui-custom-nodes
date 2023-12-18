@@ -1,7 +1,7 @@
 import numpy as np
 import torch
+import rembg
 from PIL import Image
-from rembg import remove
 
 from nodes import VAELoader, VAEDecode
 
@@ -58,9 +58,16 @@ class vae_loader:
 class background_remover:
     @classmethod
     def INPUT_TYPES(cls):
+        models = []
+        for session in rembg.session_factory.sessions_class:
+            model_name = session.name()
+            if not model_name == "u2net_custom":
+                models.append(model_name)
+
         return {
             "required": {
                 "image": ("IMAGE",),
+                "model": (models,),
             }
         }
 
@@ -68,12 +75,14 @@ class background_remover:
     FUNCTION = "main"
     CATEGORY = "rcsaquino"
 
-    def main(self, image):
+    def main(self, image, model):
         # Referenced from https://github.com/Jcd1230/rembg-comfyui-node/blob/fac7df6c3f42e158a2829b511b37f13e4cc834eb/__init__.py#L31
-        processed_img = remove(
+        session = rembg.new_session(model)
+        processed_img = rembg.remove(
             Image.fromarray(
                 np.clip(255.0 * image.cpu().numpy().squeeze(), 0, 255).astype(np.uint8)
-            )
+            ),
+            session=session,
         )
         comfyui_img = torch.from_numpy(
             np.array(processed_img).astype(np.float32) / 255.0
