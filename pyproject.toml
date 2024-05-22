@@ -1,0 +1,15 @@
+[project]
+name = "comfyui-custom-nodes"
+description = "Nodes: VAE Processor, VAE Loader, Background Remover"
+version = "1.0.0"
+license = "LICENSE"
+dependencies = ["numpy", "torch", "PIL", "rembg"]
+
+[project.urls]
+Repository = "https://github.com/rcsaquino/comfyui-custom-nodes"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = ""
+DisplayName = "comfyui-custom-nodes"
+Icon = ""
