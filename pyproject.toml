@@ -10,6 +10,6 @@ Repository = "https://github.com/rcsaquino/comfyui-custom-nodes"
 #  Used by Comfy Registry https://comfyregistry.org
 
 [tool.comfy]
-PublisherId = ""
+PublisherId = "rcsaquino"
 DisplayName = "comfyui-custom-nodes"
 Icon = ""
