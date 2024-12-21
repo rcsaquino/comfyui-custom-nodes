@@ -2,7 +2,7 @@
 name = "comfyui-custom-nodes"
 description = "Nodes: VAE Processor, VAE Loader, Background Remover"
 version = "1.0.0"
-license = "LICENSE"
+license = { file = "LICENSE" }
 dependencies = ["numpy", "torch", "PIL", "rembg"]
 
 [project.urls]
